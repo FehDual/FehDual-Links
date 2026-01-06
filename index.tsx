@@ -3,13 +3,15 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 
-const rootElement = document.getElementById('root');
+const container = document.getElementById('root');
 
-if (rootElement) {
-  const root = createRoot(rootElement);
+if (container) {
+  const root = createRoot(container);
   root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   );
+} else {
+  console.error("Não foi possível encontrar o elemento root.");
 }
