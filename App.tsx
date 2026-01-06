@@ -1,12 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from './components/Avatar';
 import LinkCard from './components/LinkCard';
 import { SOCIAL_LINKS } from './constants';
+import { Share2, Check } from 'lucide-react';
 
 const App: React.FC = () => {
+  const [copied, setCopied] = useState(false);
   const livePix = SOCIAL_LINKS.find(l => l.id === 'livepix');
   const others = SOCIAL_LINKS.filter(l => l.id !== 'livepix');
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-start pt-2 pb-12 px-6 md:px-12 overflow-x-hidden bg-zinc-950">
@@ -23,7 +31,7 @@ const App: React.FC = () => {
         <Avatar />
         
         <div className="text-center mb-8 mt-2">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-2 italic">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-white mb-2 italic uppercase">
             FELIPEDUAL
           </h1>
           <div className="h-1.5 w-20 bg-gradient-to-r from-yellow-400 to-amber-600 mx-auto rounded-full mb-4 opacity-90 shadow-[0_0_15px_rgba(250,204,21,0.5)]" />
@@ -45,7 +53,7 @@ const App: React.FC = () => {
           {/* Social Links Separator */}
           <div className="flex items-center gap-4 my-6 px-2">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent to-yellow-500/20" />
-            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-yellow-600/80">ME SEGUE AÊÊ!</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-yellow-600/80">Redes Sociais</span>
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-yellow-500/20" />
           </div>
 
@@ -57,12 +65,31 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer */}
-        <footer className="mt-16 mb-8 text-zinc-600 text-[10px] font-bold uppercase tracking-[0.2em] text-center">
-          <p className="hover:text-yellow-500/50 transition-colors cursor-default">
-            &copy; {new Date().getFullYear()} FelipeDual
-          </p>
-        </footer>
+        {/* Footer Actions */}
+        <div className="mt-12 flex flex-col items-center gap-6">
+          <button 
+            onClick={copyToClipboard}
+            className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-zinc-900 border border-white/5 text-zinc-400 text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 hover:text-white transition-all active:scale-95"
+          >
+            {copied ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-green-500" />
+                <span>Link Copiado!</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-3.5 h-3.5" />
+                <span>Compartilhar Perfil</span>
+              </>
+            )}
+          </button>
+
+          <footer className="text-zinc-600 text-[10px] font-bold uppercase tracking-[0.2em] text-center">
+            <p className="hover:text-yellow-500/50 transition-colors cursor-default">
+              &copy; {new Date().getFullYear()} FelipeDual • Todos os direitos reservados
+            </p>
+          </footer>
+        </div>
       </main>
 
       {/* Subtle Floating Particles - Yellow */}
@@ -84,7 +111,7 @@ const App: React.FC = () => {
         @keyframes float-particle {
           0%, 100% { transform: translate(0, 0); opacity: 0; }
           25% { opacity: 1; }
-          50% { transform: translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px); }
+          50% { transform: translate(${(Math.random() - 0.5) * 100}px, ${(Math.random() - 0.5) * 100}px); }
           75% { opacity: 0.5; }
         }
       `}</style>
