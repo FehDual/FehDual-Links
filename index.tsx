@@ -1,17 +1,14 @@
-
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 
-const container = document.getElementById('root');
+const rootElement = document.getElementById('root');
 
-if (container) {
-  const root = createRoot(container);
+if (rootElement) {
+  const root = createRoot(rootElement);
   root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
   );
-} else {
-  console.error("Não foi possível encontrar o elemento root.");
 }
