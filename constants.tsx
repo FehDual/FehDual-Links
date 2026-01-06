@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Youtube, Instagram, Music2, DollarSign } from 'lucide-react';
-import { SocialLink } from './types';
+import { SocialLink } from './types.ts';
 
 export const AVATAR_URL = "https://i.imgur.com/aAdJ2Pe.png";
 

@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { SocialLink } from '../types';
-import { getIcon } from '../constants';
+import { SocialLink } from '../types.ts';
+import { getIcon } from '../constants.tsx';
 
 interface LinkCardProps {
   link: SocialLink;
@@ -25,7 +25,6 @@ const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
         backdrop-blur-sm
       `}
     >
-      {/* Background Glow for Special Link */}
       {isSpecial && (
         <div className="absolute inset-0 -z-10 bg-yellow-500/5 blur-2xl group-hover:bg-yellow-500/20 transition-all rounded-2xl" />
       )}

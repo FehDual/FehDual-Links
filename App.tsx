@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import Avatar from './components/Avatar';
-import LinkCard from './components/LinkCard';
-import { SOCIAL_LINKS } from './constants';
+import Avatar from './components/Avatar.tsx';
+import LinkCard from './components/LinkCard.tsx';
+import { SOCIAL_LINKS } from './constants.tsx';
 import { Share2, Check } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -19,7 +19,6 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-start pt-2 pb-12 px-6 md:px-12 overflow-x-hidden bg-zinc-950">
       
-      {/* Dynamic Background Elements - Yellow/Amber Palette */}
       <div className="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-yellow-500/10 rounded-full blur-[120px] animate-blob" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-amber-500/10 rounded-full blur-[120px] animate-blob animation-delay-2000" />
@@ -27,7 +26,6 @@ const App: React.FC = () => {
       </div>
 
       <main className="w-full max-w-lg z-10 flex flex-col items-center">
-        {/* Header Section */}
         <Avatar />
         
         <div className="text-center mb-8 mt-2">
@@ -40,9 +38,7 @@ const App: React.FC = () => {
           </p>
         </div>
 
-        {/* Links Grid */}
         <div className="w-full flex flex-col gap-4">
-          {/* Priority Link */}
           {livePix && (
             <div className="group relative">
                <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -50,14 +46,12 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* Social Links Separator */}
           <div className="flex items-center gap-4 my-6 px-2">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent to-yellow-500/20" />
             <span className="text-[10px] uppercase tracking-[0.3em] font-black text-yellow-600/80">Redes Sociais</span>
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-yellow-500/20" />
           </div>
 
-          {/* Other Links */}
           <div className="grid grid-cols-1 gap-3 w-full">
             {others.map((link) => (
               <LinkCard key={link.id} link={link} />
@@ -65,7 +59,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer Actions */}
         <div className="mt-12 flex flex-col items-center gap-6">
           <button 
             onClick={copyToClipboard}
@@ -92,7 +85,6 @@ const App: React.FC = () => {
         </div>
       </main>
 
-      {/* Subtle Floating Particles - Yellow */}
       <div className="fixed inset-0 pointer-events-none opacity-30">
         {[...Array(20)].map((_, i) => (
           <div 

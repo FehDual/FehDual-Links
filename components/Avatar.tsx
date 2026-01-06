@@ -1,19 +1,16 @@
 
 import React from 'react';
-import { AVATAR_URL } from '../constants';
+import { AVATAR_URL } from '../constants.tsx';
 
 const Avatar: React.FC = () => {
   return (
     <div className="relative group flex justify-center items-end h-[380px] w-full">
-      {/* Background Decorative Frame (The "Portal") */}
       <div className="absolute bottom-2 w-56 h-48 rounded-3xl bg-gradient-to-b from-yellow-500/10 to-transparent border border-yellow-500/20 backdrop-blur-sm overflow-hidden transition-all duration-500 group-hover:border-yellow-400/40 group-hover:scale-105 shadow-2xl">
         <div className="absolute inset-0 bg-yellow-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       </div>
 
-      {/* The Glow - Yellow/Golden palette */}
       <div className="absolute top-[75%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-yellow-400/25 blur-[90px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
-      {/* The Character Wrapper */}
       <div 
         className="relative z-10 w-[550px] h-full transition-all duration-500 transform group-hover:scale-110 group-hover:-translate-y-2 pointer-events-none flex items-start justify-center overflow-hidden"
         style={{
