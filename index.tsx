@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 
 const rootElement = document.getElementById('root');
+
 if (rootElement) {
   const root = createRoot(rootElement);
   root.render(
@@ -12,5 +13,5 @@ if (rootElement) {
     </React.StrictMode>
   );
 } else {
-  console.error("Não foi possível encontrar o elemento root para montar o app.");
+  console.error("Erro crítico: Elemento #root não encontrado no HTML.");
 }
