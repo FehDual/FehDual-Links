@@ -38,7 +38,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
           {getIcon(link.icon)}
         </div>
         
-        <div className="flex flex-col">
+        <div className="flex flex-col text-left">
           <span className="font-semibold text-zinc-100 text-lg group-hover:text-white transition-colors">
             {link.label}
           </span>
@@ -51,7 +51,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
       </div>
 
       <div className={`transition-colors ${isSpecial ? 'text-yellow-500' : 'text-zinc-600 group-hover:text-yellow-500'}`}>
-        <svg xmlns="http://www.w3.org/2000/00" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
         </svg>
       </div>
