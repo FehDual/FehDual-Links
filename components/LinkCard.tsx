@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { SocialLink } from '../types.ts';
 import { getIcon } from '../constants.tsx';
@@ -19,14 +18,14 @@ const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
         group relative w-full p-4 rounded-2xl flex items-center justify-between
         transition-all duration-300 ease-out transform hover:-translate-y-1 hover:shadow-2xl
         ${isSpecial 
-          ? 'bg-zinc-900 border-2 border-yellow-500/50 hover:border-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.1)]' 
+          ? 'bg-zinc-900 border-2 border-[#32BCAD]/50 hover:border-[#32BCAD] shadow-[0_0_20px_rgba(50,188,173,0.1)]' 
           : 'bg-zinc-900/50 border border-white/5 hover:bg-zinc-800/80 hover:border-white/20'
         }
         backdrop-blur-sm
       `}
     >
       {isSpecial && (
-        <div className="absolute inset-0 -z-10 bg-yellow-500/5 blur-2xl group-hover:bg-yellow-500/20 transition-all rounded-2xl" />
+        <div className="absolute inset-0 -z-10 bg-[#32BCAD]/5 blur-2xl group-hover:bg-[#32BCAD]/20 transition-all rounded-2xl" />
       )}
 
       <div className="flex items-center gap-4">
@@ -50,7 +49,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link }) => {
         </div>
       </div>
 
-      <div className={`transition-colors ${isSpecial ? 'text-yellow-500' : 'text-zinc-600 group-hover:text-yellow-500'}`}>
+      <div className={`transition-colors ${isSpecial ? 'text-[#32BCAD]' : 'text-zinc-600 group-hover:text-yellow-500'}`}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
         </svg>

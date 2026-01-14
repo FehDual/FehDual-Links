@@ -1,20 +1,13 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import Avatar from './components/Avatar.tsx';
 import LinkCard from './components/LinkCard.tsx';
-import { SOCIAL_LINKS } from './constants.tsx';
-import { Share2, Check } from 'lucide-react';
+import { SOCIAL_LINKS, getIcon } from './constants.tsx';
 
 const App: React.FC = () => {
-  const [copied, setCopied] = useState(false);
   const livePix = SOCIAL_LINKS.find(l => l.id === 'livepix');
-  const others = SOCIAL_LINKS.filter(l => l.id !== 'livepix');
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const kickLink = SOCIAL_LINKS.find(l => l.id === 'kick');
+  const twitchLink = SOCIAL_LINKS.find(l => l.id === 'twitch');
+  const socialMedias = SOCIAL_LINKS.filter(l => l.id !== 'livepix' && l.id !== 'kick' && l.id !== 'twitch');
 
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-start pt-2 pb-12 px-6 md:px-12 overflow-x-hidden bg-zinc-950">
@@ -34,49 +27,72 @@ const App: React.FC = () => {
           </h1>
           <div className="h-1.5 w-20 bg-gradient-to-r from-yellow-400 to-amber-600 mx-auto rounded-full mb-4 opacity-90 shadow-[0_0_15px_rgba(250,204,21,0.5)]" />
           <p className="text-zinc-400 font-medium max-w-xs mx-auto text-sm md:text-base leading-relaxed">
-            Criador de conteúdo focado em <span className="text-yellow-400 font-bold">Minecraft</span> e entretenimento digital.
+            <span className="text-yellow-400 font-bold">Paiaço do Mine</span>
           </p>
         </div>
 
         <div className="w-full flex flex-col gap-4">
+          {/* APOIO SECTION */}
           {livePix && (
             <div className="group relative">
-               <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+               <div className="absolute -inset-0.5 bg-[#32BCAD] rounded-2xl blur opacity-20 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
               <LinkCard link={livePix} />
             </div>
           )}
 
-          <div className="flex items-center gap-4 my-6 px-2">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-yellow-500/20" />
-            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-yellow-600/80">Redes Sociais</span>
-            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-yellow-500/20" />
+          {/* KICK & TWITCH / LIVE SECTION */}
+          <div className="flex items-center gap-4 mt-8 mb-4 px-2">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-yellow-500/40" />
+            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-yellow-400 whitespace-nowrap">Assista ao vivo aqui</span>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-yellow-500/40" />
           </div>
 
-          <div className="grid grid-cols-1 gap-3 w-full">
-            {others.map((link) => (
-              <LinkCard key={link.id} link={link} />
+          <div className="flex flex-col gap-3">
+            {kickLink && (
+              <div className="group relative">
+                <div className="absolute -inset-0.5 bg-[#53FC18] rounded-2xl blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
+                <LinkCard link={kickLink} />
+              </div>
+            )}
+
+            {twitchLink && (
+              <div className="group relative">
+                <div className="absolute -inset-0.5 bg-[#9146FF] rounded-2xl blur opacity-10 group-hover:opacity-30 transition duration-1000"></div>
+                <LinkCard link={twitchLink} />
+              </div>
+            )}
+          </div>
+
+          {/* REDES SOCIAIS SECTION */}
+          <div className="flex items-center gap-4 mt-8 mb-6 px-2">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-yellow-500/40" />
+            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-yellow-400 whitespace-nowrap">ME SEGUE AÊÊ!</span>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-yellow-500/40" />
+          </div>
+
+          {/* SIDE-BY-SIDE SOCIAL ICONS */}
+          <div className="flex flex-wrap justify-center gap-6 w-full px-4 mb-4">
+            {socialMedias.map((link) => (
+              <a
+                key={link.id}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={link.label}
+                className={`
+                  relative p-4 rounded-2xl flex items-center justify-center text-white
+                  ${link.color} shadow-lg transform transition-all duration-300
+                  hover:scale-125 hover:-translate-y-2 hover:shadow-2xl active:scale-95
+                `}
+              >
+                {getIcon(link.icon)}
+                <div className="absolute -inset-1 bg-white/5 rounded-2xl opacity-0 hover:opacity-100 blur transition-opacity" />
+              </a>
             ))}
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-6">
-          <button 
-            onClick={copyToClipboard}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-zinc-900 border border-white/5 text-zinc-400 text-xs font-bold uppercase tracking-widest hover:bg-zinc-800 hover:text-white transition-all active:scale-95"
-          >
-            {copied ? (
-              <>
-                <Check className="w-3.5 h-3.5 text-green-500" />
-                <span>Link Copiado!</span>
-              </>
-            ) : (
-              <>
-                <Share2 className="w-3.5 h-3.5" />
-                <span>Compartilhar Perfil</span>
-              </>
-            )}
-          </button>
-
           <footer className="text-zinc-600 text-[10px] font-bold uppercase tracking-[0.2em] text-center">
             <p className="hover:text-yellow-500/50 transition-colors cursor-default">
               &copy; {new Date().getFullYear()} FelipeDual • Todos os direitos reservados
